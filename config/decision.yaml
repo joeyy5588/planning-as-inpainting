@@ -1,0 +1,58 @@
+dataset:
+  name: "GridDataset"
+  max_n_episodes: 10000
+  max_path_length: 64
+
+  # gridworld specific
+  grid_size: 10
+  max_objects: 5
+  min_objects: 3
+  max_obstacles: 20
+  min_obstacles: 10
+
+model:
+  name: "UNet1DModel"
+  # need to be divisible by norm_num_groups
+  input_channels: 104
+  output_channels: 104
+  sequence_length: 64
+  use_timestep_embedding: True
+  time_embedding_type: "positional"
+  down_block_types: ['DownResnetBlock1D', 'DownResnetBlock1D', 'DownResnetBlock1D']
+  up_block_types: ["UpResnetBlock1D", "UpResnetBlock1D","UpResnetBlock1D"]
+  get_mid_block: "MidResTemporalBlock1D"
+  block_out_channels: [128, 256, 512]
+  act_fn: "mish"
+  norm_num_groups: 8
+
+  # for EMA Model
+  use_ema: True
+  ema_inv_gamma: 1.0
+  ema_power: 0.75
+  ema_max_decay: 0.995
+
+
+
+training:
+  n_gpus: 8
+  train_batch_size: 32
+  learning_rate: 0.0002
+  lr_warmup_steps: 1000
+  num_epochs: 100
+  beta_schedule: "squaredcos_cap_v2"
+  gradient_accumulation_steps: 1
+  mixed_precision: "no"
+  n_diffusion_steps: 200
+
+  checkpointing_steps: 10000
+  checkpoints_total_limit: 5
+  save_model_epochs: 2
+
+  # for apply_conditioning
+  observation_dim: 100
+  action_dim: 4
+
+  # for evaluation
+  eval_per_epoch: 1
+  eval_batch_size: 32
+  num_inference_steps: 200

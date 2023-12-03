@@ -1,0 +1,47 @@
+dataset:
+  name: "GridDataset"
+  max_n_episodes: 100
+  max_path_length: 100
+
+  # gridworld specific
+  grid_size: 10
+  max_objects: 5
+  min_objects: 3
+  max_obstacles: 20
+  min_obstacles: 10
+
+model:
+  name: "UNet1DModel"
+  input_channels: 104
+  output_channels: 100
+  sequence_length: 100
+  use_timestep_embedding: True
+  time_embedding_type: "positional"
+  down_block_types: ['DownBlock1DNoSkip', 'DownBlock1D', 'AttnDownBlock1D']
+  up_block_types: ["AttnUpBlock1D", "UpBlock1D", "UpBlock1DNoSkip"]
+  get_mid_block: "UNetMidBlock1D"
+  block_out_channels: [128, 256, 512]
+  act_fn: "mish"
+
+  # for EMA Model
+  use_ema: True
+  ema_inv_gamma: 1.0
+  ema_power: 0.75
+  ema_max_decay: 0.9999
+
+
+
+training:
+  n_gpus: 8
+  batch_size: 32
+  learning_rate: 0.0001
+  lr_warmup_steps: 1000
+  num_epochs: 50
+  beta_schedule: "squaredcos_cap_v2"
+  gradient_accumulation_steps: 1
+  mixed_precision: "no"
+  n_diffusion_steps: 200
+
+  checkpointing_steps: 10000
+  checkpoints_total_limit: 5
+

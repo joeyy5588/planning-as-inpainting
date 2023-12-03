@@ -1,0 +1,63 @@
+dataset:
+  name: "KukaDataset"
+  max_n_episodes: 20000
+  max_path_length: 1
+  normalizer: "CDFNormalizer"
+
+  # gridworld specific
+  grid_size: 24
+  # stacking or rearrangement
+  type: "rearrangement"
+  diverse_instruction: False
+
+model:
+  # Dimensions must be a multiple of 2 ** (len(block_out_channels) - 1)
+  name: "UNet2DConditionModel"
+  text_encoder_name: "CLIPTextModel"
+  # need to be divisible by norm_num_groups
+  input_channels: 2
+  output_channels: 1
+  sample_size: [24, 24]
+  use_timestep_embedding: True
+  time_embedding_type: "positional"
+  down_block_types: ["CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "DownBlock2D"]
+  up_block_types: ["UpBlock2D", "CrossAttnUpBlock2D", "CrossAttnUpBlock2D"]
+  mid_block_type: "UNetMidBlock2DCrossAttn"
+  block_out_channels: [8, 64, 128]
+  cross_attention_dim: 128
+  act_fn: "mish"
+  norm_num_groups: 8
+  text_encoder_hidden_size: 512
+
+  # for EMA Model
+  use_ema: True
+  ema_inv_gamma: 1.0
+  ema_power: 0.75
+  ema_max_decay: 0.995
+
+training:
+  n_gpus: 1
+  train_batch_size: 64
+  learning_rate: 0.0002
+  lr_warmup_steps: 1000
+  num_epochs: 200
+  scheduler_type: "ddim"
+  beta_schedule: "squaredcos_cap_v2"
+  gradient_accumulation_steps: 1
+  mixed_precision: "no"
+  n_diffusion_steps: 50
+  # classifier-free guidance
+  guidance_scale: 0
+
+  checkpointing_steps: 10000
+  checkpoints_total_limit: 10
+  save_model_epochs: 2
+
+  # for apply_conditioning
+  observation_dim: 100
+  action_dim: 4
+
+  # for evaluation
+  eval_per_epoch: 20
+  eval_batch_size: 64
+  num_inference_steps: 50

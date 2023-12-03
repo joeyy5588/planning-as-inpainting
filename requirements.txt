@@ -1,0 +1,4 @@
+python-box
+scipy
+matplotlib
+tensorboard==2.14.0
