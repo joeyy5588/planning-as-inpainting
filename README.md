@@ -1,6 +1,6 @@
 # Planning as In-Painting: A Diffusion-Based Embodied Task Planning Framework for Environments under Uncertainty
 
-[Cheng-Fu Yang](https://joeyy5588.github.io/chengfu-yang/), Yen-Chun Chen, Jianwei Yang, Xiyang Dai, Lu Yuan, Yu-Chiang Frank Wang, Kai-Wei Chang
+[Cheng-Fu Yang](https://joeyy5588.github.io/chengfu-yang/), Haoyang Xu, Te-Lin Wu, Xiaofeng Gao, Kai-Wei Chang, Feng Gao
 
 ### Installation
 ```
