@@ -70,5 +70,15 @@ python train.py --config config/alfred_repr.yaml --output_dir output/alfred_repr
 
 # We prepare to release the rollout and evaluation code on ALFRED soon
 ```
-
-
+### Citation
+If you find this repository useful, please consider cite our work:
+```bibtex
+@misc{yang2023planning,
+      title={Planning as In-Painting: A Diffusion-Based Embodied Task Planning Framework for Environments under Uncertainty}, 
+      author={Cheng-Fu Yang and Haoyang Xu and Te-Lin Wu and Xiaofeng Gao and Kai-Wei Chang and Feng Gao},
+      year={2023},
+      eprint={2312.01097},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
