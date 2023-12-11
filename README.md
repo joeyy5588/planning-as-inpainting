@@ -1,10 +1,14 @@
 # Planning as In-Painting
-[Cheng-Fu Yang](https://joeyy5588.github.io/chengfu-yang/), Haoyang Xu, Te-Lin Wu, Xiaofeng Gao, Kai-Wei Chang, Feng Gao
+## [ [paper](https://arxiv.org/abs/2312.01097) | [project page](https://joeyy5588.github.io/planning-as-inpainting.github.io/) ]
 
 This is the official implementation of the paper: 
-Planning as In-Painting: A Diffusion-Based Embodied Task Planning Framework for Environments under Uncertainty
-[ [paper](https://arxiv.org/abs/2312.01097) | [project page](https://joeyy5588.github.io/planning-as-inpainting.github.io/) ]
+[Planning as In-Painting: A Diffusion-Based Embodied Task Planning Framework for Environments under Uncertainty](https://arxiv.org/abs/2312.01097)  
 
+[Cheng-Fu Yang](https://joeyy5588.github.io/chengfu-yang/)<sup>1</sup>, Haoyang Xu<sup>1</sup>, [Te-Lin Wu](https://telin0411.github.io/)<sup>1</sup>, [Xiaofeng Gao](https://xfgao.github.io/)<sup>2</sup>, [Kai-Wei Chang](http://web.cs.ucla.edu/~kwchang/)<sup>1</sup>, [Feng Gao](https://scholar.google.com/citations?user=amaLnocAAAAJ&hl=en)<sup>2</sup>
+
+<sup>1</sup>UCLA 🐻 &emsp;<sup>2</sup>Amazon 🅰️
+
+## 🎬 Get Started
 ### Installation
 ```
 conda create -n diffuser python=3.8
